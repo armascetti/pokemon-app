@@ -42,25 +42,37 @@ function App() {
 
   return (
     <div className="App">
-      <div className="titleSection">
-        <h1> Pokemon Stats </h1>
-        <input type="text"
-          onChange={(event) => { setPokemonName(event.target.value) }}></input>
-        <button onClick={searchPokemon}> Search Pokemon </button>
-      </div>
+      <header className="header">
+        <h1>Pokemon Fan Page</h1>
+        <div className="subtitle">Search and collect your favorite Pokémon stats</div>
+        <div className="searchBar">
+          <input
+            type="text"
+            placeholder="e.g. pikachu or 25"
+            onChange={(event) => { setPokemonName(event.target.value) }}
+          />
+          <button onClick={searchPokemon}>Search</button>
+        </div>
+      </header>
+
       <div className="displaySection">
         {!pokemonChosen ? (
-          <h1> Please Choose a Pokemon</h1>
+          <div className="empty">Please choose a Pokémon to see details.</div>
         ) : (
-          <>
-            <h1>{pokemon.name}</h1>
-            <img src={pokemon.img} alt="pokechar" />
-            <h2> Species: {pokemon.species}</h2>
-            <h2> Type: {pokemon.type}</h2>
-            <h2>HP: {pokemon.hp}</h2>
-            <h2>Attack: {pokemon.attack}</h2>
-            <h2>Defense: {pokemon.defense}</h2>
-          </>
+          <div className="card">
+            <div className="card-left">
+              <img className="pokemon-image" src={pokemon.img} alt={pokemon.name} />
+            </div>
+            <div className="card-right">
+              <h2 className="pokemon-name">{pokemon.name}</h2>
+              <div className="pokemon-meta">{pokemon.species} • {pokemon.type}</div>
+              <div className="stats">
+                <div className="stat">HP: {pokemon.hp}</div>
+                <div className="stat">Attack: {pokemon.attack}</div>
+                <div className="stat">Defense: {pokemon.defense}</div>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </div>
