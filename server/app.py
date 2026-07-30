@@ -8,6 +8,7 @@ import json
 app = Flask(__name__)
 CORS(app)
 
+# Connect to PostgreSQL
 conn = psycopg2.connect(
     host="localhost",
     database="pokemon_db",
